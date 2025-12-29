@@ -17,7 +17,7 @@ export const findProduct = async (req, res) => {
 
   try {
     const result = await pool.query('SELECT * FROM products;');
-    const search = new RegExp(result, 'gi');
+    const search = new RegExp(productName, 'gi');
     const found = result.rows.filter(value => value.name.match(search));
 
     if (found.length === 0) return res.status(404).json({message: 'Empty'});
